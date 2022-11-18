@@ -1,17 +1,27 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.assertj.core.api.AssertionsForClassTypes;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import racingcar.Controller.RacingController;
+import racingcar.Model.RacingUser;
+
+import java.util.ArrayList;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
     private static final int MOVING_FORWARD = 4;
     private static final int STOP = 3;
 
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    RacingController racingController = new RacingController();
+
 
     @Test
     void 전진_정지() {
@@ -33,6 +43,33 @@ class ApplicationTest extends NsTest {
                 }
         );
     }
+
+    @Test
+    void 이름에_대한_예외_처리2() {
+        assertSimpleTest(
+                () -> {
+                    runException("pobi,,java");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+    @Test
+    void 이름_리스트_체크()
+    {
+        assertSimpleTest(
+                () -> {
+                    run("pobi,java,kuro");
+                    ArrayList<RacingUser> userList = Application.getControllerUserList();
+                    int result = Application.getControllerUserList().size();
+                    AssertionsForClassTypes.assertThat(result).isEqualTo(3);
+                    AssertionsForClassTypes.assertThat(userList.get(0).getName()).isEqualTo("pobi");
+                    AssertionsForClassTypes.assertThat(userList.get(1).getName()).isEqualTo("java");
+                    AssertionsForClassTypes.assertThat(userList.get(2).getName()).isEqualTo("kuro");
+                }
+        );
+    }
+
+
 
     @Override
     public void runMain() {
