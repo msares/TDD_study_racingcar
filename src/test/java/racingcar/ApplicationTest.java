@@ -2,6 +2,10 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import racingcar.contorller.RacingCarBuilder;
+import racingcar.model.RacingCar;
+
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -10,8 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final int MOVING_FORWARD = 4;
     private static final int STOP = 3;
-
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    public void testCarName_split_car_names() {
+        List<RacingCar> carList = new RacingCarBuilder("hana,duna").createCars();
+        assertThat(carList.get(0).getName()).isEqualTo("hana");
+        assertThat(carList.get(1).getName()).isEqualTo("duna");
+    }
 
     @Test
     void 전진_정지() {
