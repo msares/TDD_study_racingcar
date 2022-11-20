@@ -53,12 +53,43 @@ class ApplicationTest extends NsTest {
                 }
         );
     }
+
+    @Test
+    void 이름에_대한_예외_처리3() {
+        assertSimpleTest(
+                () -> {
+                    runException("pobi,,java,pobi");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @Test
+    void 게임사이즈에_대한_예외_처리1() {
+        assertSimpleTest(
+                () -> {
+                    runException("pobi,java,pobi","abc");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @Test
+    void 게임사이즈에_대한_예외_처리2() {
+        assertSimpleTest(
+                () -> {
+                    runException("pobi,java,pobi","10000");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
     @Test
     void 이름_리스트_체크()
     {
         assertSimpleTest(
                 () -> {
-                    run("pobi,java,kuro");
+                    run("pobi,java,kuro","5");
                     ArrayList<RacingUser> userList = Application.getControllerUserList();
                     int result = Application.getControllerUserList().size();
                     AssertionsForClassTypes.assertThat(result).isEqualTo(3);
