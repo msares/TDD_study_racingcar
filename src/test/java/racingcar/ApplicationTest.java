@@ -26,10 +26,14 @@ class ApplicationTest extends NsTest {
    @Test
    public void test_car_run() {
         List<RacingCar> carList = new RacingCarBuilder("hana,duna").createCars();
-        for (RacingCar car : carList) {
-            car.runCar();
-            System.out.println(car.toString());
-        }
+        RacingCar hanaCar = carList.get(0);
+        RacingCar dunaCar = carList.get(1);
+        hanaCar.runCar(MOVING_FORWARD);
+        dunaCar.runCar(STOP);
+        assertThat(hanaCar.getMovement()).isEqualTo("-");
+        assertThat(dunaCar.getMovement()).isEqualTo("");
+        System.out.println(hanaCar);
+        System.out.println(dunaCar);
     }
 
     @Test
