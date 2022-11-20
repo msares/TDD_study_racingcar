@@ -23,6 +23,15 @@ class ApplicationTest extends NsTest {
         assertThat(carList.get(1).getName()).isEqualTo("duna");
     }
 
+   @Test
+   public void test_car_run() {
+        List<RacingCar> carList = new RacingCarBuilder("hana,duna").createCars();
+        for (RacingCar car : carList) {
+            car.runCar();
+            System.out.println(car.toString());
+        }
+    }
+
     @Test
     void 전진_정지() {
         assertRandomNumberInRangeTest(

@@ -6,14 +6,12 @@ import racingcar.model.RacingCar;
 import java.util.ArrayList;
 import java.util.List;
 
-import static racingcar.model.RacingAppConstants.*;
-
 public class RacingCarBuilder {
     public static final int MAX_CAR_NAME_LENGTH = 5;
+    public static final String DELIMITER = ",";
     private static final String ERROR_PREFIX = "[ERROR]";
     public static final String BLANK_STRING_ERROR = ERROR_PREFIX + " Car name cannot be empty string.";
     public static final String OUT_OF_BOUND_ERROR = ERROR_PREFIX + " Max length of car name is " + MAX_CAR_NAME_LENGTH + ".";
-
 
     private final String carNames;
 
