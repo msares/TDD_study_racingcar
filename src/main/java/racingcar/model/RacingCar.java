@@ -15,18 +15,6 @@ public class RacingCar {
         this.position = "";
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getMovement() {
-        return position;
-    }
-
-    public String toString() {
-        return name + " : " + position;
-    }
-
     public void runCar() {
         if (COMPARE_VALUE <= getRandomValue()) {
             position += MOVE_SINGE;
@@ -42,4 +30,17 @@ public class RacingCar {
     public static int getRandomValue() {
         return RANDOM.nextInt(10);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMovement() {
+        return position;
+    }
+
+    public String toString() {
+        return name + " : " + position;
+    }
+
 }
