@@ -1,4 +1,4 @@
-package racingcar.contorller;
+package racingcar.model;
 
 import org.junit.platform.commons.util.StringUtils;
 import racingcar.model.RacingCar;
@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarBuilder {
-    public static final int MAX_CAR_NAME_LENGTH = 5;
-    public static final String DELIMITER = ",";
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final String DELIMITER = ",";
     private static final String ERROR_PREFIX = "[ERROR]";
-    public static final String BLANK_STRING_ERROR = ERROR_PREFIX + " Car name cannot be empty string.";
-    public static final String OUT_OF_BOUND_ERROR = ERROR_PREFIX + " Max length of car name is " + MAX_CAR_NAME_LENGTH + ".";
+    private static final String BLANK_STRING_ERROR = ERROR_PREFIX + " Car name cannot be empty string.";
+    private static final String OUT_OF_BOUND_ERROR = ERROR_PREFIX + " Max length of car name is " + MAX_CAR_NAME_LENGTH + ".";
 
     private final String carNames;
 
