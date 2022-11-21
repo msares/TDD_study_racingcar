@@ -109,10 +109,12 @@ public class Application {
     public static void printWinner(){
         String message = "최종 우승자 : ";
         for (String winnerName : getControllerWinnerList()) {
-            message += winnerName + ",";
+            message += winnerName + ", ";
         }
-        if(message.charAt(message.length() - 1) == ','){
-            message = message.substring(0,message.length() - 1);
+        if(message.substring(message.length() - 2).equals(", ")){
+            System.out.println("FOUND");
+
+            message = message.substring(0,message.length() - 2);
         }
         System.out.println(message);
     }

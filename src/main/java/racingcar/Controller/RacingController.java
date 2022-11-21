@@ -41,7 +41,7 @@ public class RacingController {
     private void moveUser(RacingUser user, int rndNum){
         if(rndNum >= 4)
             user.move();
-        if(user.getPosition() == gameSize){
+        if(Integer.compare(user.getPosition(),gameSize) == 0){
             winnerList.add(user.getName());
         }
     }
