@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class RacingCar {
     private static final Random RANDOM = new Random() ;
-    public static final int COMPARE_VALUE = 4;
-    public static final String MOVE_SINGE = "-";
+    private static final int COMPARE_VALUE = 4;
+    private static final String MOVE_SINGE = "-";
 
     private  String name;
     private  String position;
