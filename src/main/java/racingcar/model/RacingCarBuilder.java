@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import org.junit.platform.commons.util.StringUtils;
-import racingcar.model.RacingCar;
 
 import java.util.ArrayList;
 import java.util.List;

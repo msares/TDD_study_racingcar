@@ -1,6 +1,7 @@
 package racingcar.contorller;
 
 import racingcar.model.RacingCar;
+import racingcar.model.RacingCarBuilder;
 
 import java.util.List;
 

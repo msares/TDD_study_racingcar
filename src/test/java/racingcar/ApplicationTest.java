@@ -2,7 +2,7 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
-import racingcar.contorller.RacingCarBuilder;
+import racingcar.model.RacingCarBuilder;
 import racingcar.model.RacingCar;
 
 import java.util.List;
@@ -23,8 +23,8 @@ class ApplicationTest extends NsTest {
         assertThat(carList.get(1).getName()).isEqualTo("duna");
     }
 
-   @Test
-   public void test_car_run() {
+    @Test
+    public void test_car_run() {
         List<RacingCar> carList = new RacingCarBuilder("hana,duna").createCars();
         RacingCar hanaCar = carList.get(0);
         RacingCar dunaCar = carList.get(1);
