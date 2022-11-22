@@ -1,9 +1,7 @@
-package racingcar;
+package racingcar.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.Car;
-import racingcar.model.SplitCar;
 
 import java.util.ArrayList;
 
