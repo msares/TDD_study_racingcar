@@ -1,17 +1,18 @@
 package racingcar.view;
 
-import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Console;
 
 public class UserInputModule {
-  private static final Scanner scanner = new Scanner(System.in);
+  private static final String INPUT_CAR_NAME_MESSAGE = "경주할자동차이름(이름은쉼표(,)기준으로구분)";
+  private static final String INPUT_TYR_CNT_MESSAGE = "시도할 회수";
 
   public static String inputCarNames() {
-    System.out.println("경주할자동차이름(이름은쉼표(,)기준으로구분)");
-    return scanner.nextLine();
+    System.out.println(INPUT_CAR_NAME_MESSAGE);
+    return Console.readLine();
   }
 
-  public static int inputTryCount() {
-    System.out.println("시도할 회수");
-    return scanner.nextInt();
+  public static String inputTryCount() {
+    System.out.println(INPUT_TYR_CNT_MESSAGE);
+    return Console.readLine();
   }
 }
