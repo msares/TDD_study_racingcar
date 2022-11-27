@@ -14,13 +14,16 @@ import static racingcar.common.ErrorConstants.BLANK_STRING_ERROR;
 import static racingcar.common.ErrorConstants.CAR_NAME_OUT_OF_BOUND_ERROR;
 import static racingcar.common.ErrorConstants.NUMBER_FORMAT_ERROR;
 import static racingcar.common.ErrorConstants.NUMBER_OUT_OF_RANGE_ERROR;
+import static racingcar.common.TestConstants.USER_DUNA;
+import static racingcar.common.TestConstants.USER_HANA;
+import static racingcar.common.TestConstants.USER_NAMES;
 
 public class UserInputVerifierTest extends NsTest {
   @Test
   public void testCarName_split_car_names() {
-    List<RacingCar> carList = new RacingCarBuilder().createCars("hana,duna");
-    assertThat(carList.get(0).getName()).isEqualTo("hana");
-    assertThat(carList.get(1).getName()).isEqualTo("duna");
+    List<RacingCar> carList = new RacingCarBuilder().createCars(USER_NAMES);
+    assertThat(carList.get(0).getName()).isEqualTo(USER_HANA);
+    assertThat(carList.get(1).getName()).isEqualTo(USER_DUNA);
   }
 
   @Test
