@@ -3,6 +3,8 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static racingcar.common.GameConstants.NUMBER_ZERO;
+
 public class RankManager {
   private static List<RacingCar> cars;
   private static List<String> winners;
@@ -17,6 +19,10 @@ public class RankManager {
   public static List<String> getWinners() {
     for (RacingCar car : cars) {
       winnerPosition = getWinnerPosition(car.getMovingStage());
+    }
+
+    if (winnerPosition == NUMBER_ZERO) {
+      return winners;
     }
 
     for (RacingCar car : cars) {

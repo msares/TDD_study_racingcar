@@ -65,6 +65,10 @@ public class GameController {
   }
 
   private static void printWinners(List<String> winners) {
+    if (winners.isEmpty()) {
+      System.out.println(WINNER_PREFIX + "없음");
+      return;
+    }
     System.out.println(WINNER_PREFIX + String.join(DELIMITER, winners));
   }
 }
