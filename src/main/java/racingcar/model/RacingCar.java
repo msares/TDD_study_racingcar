@@ -1,13 +1,12 @@
 package racingcar.model;
 
+import static racingcar.common.GameConstants.MOVE_SINGE;
 import static racingcar.model.UserInputVerifier.validateCarName;
 
 public class RacingCar {
-  private static final int COMPARE_VALUE = 4;
-  private static final String MOVE_SINGE = "-";
-
-  private String name;
+  private int movingStage;
   private String position;
+  private String name;
 
   public RacingCar(String name) {
     validateCarName(name);
@@ -16,9 +15,11 @@ public class RacingCar {
   }
 
   public void runCar(int randomNum) {
-    if (COMPARE_VALUE <= randomNum) {
+    if (MoveManager.compareValue(randomNum)) {
+      movingStage++;
       position += MOVE_SINGE;
     }
+    printCarInfo();
   }
 
   public String getName() {
@@ -27,6 +28,10 @@ public class RacingCar {
 
   public String getPosition() {
     return position;
+  }
+
+  public int getMovingStage() {
+    return movingStage;
   }
 
   public void printCarInfo() {
