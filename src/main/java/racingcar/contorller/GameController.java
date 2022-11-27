@@ -60,7 +60,6 @@ public class GameController {
   private static void runCars() {
     for (RacingCar car : racingCars) {
       car.runCar(MoveManager.getRandomValue());
-      car.printCarInfo();
     }
   }
 
