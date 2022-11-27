@@ -13,8 +13,8 @@ public class UserInputVerifier {
     if (StringUtils.isBlank(name)) {
       throw new IllegalArgumentException(BLANK_STRING_ERROR);
     }
-    if (name.length() > MAX_CAR_NAME_LENGTH) {
-      throw new IllegalArgumentException(CAR_NAME_OUT_OF_BOUND_ERROR + MAX_CAR_NAME_LENGTH);
+    if (MAX_CAR_NAME_LENGTH < name.length()) {
+      throw new IllegalArgumentException(CAR_NAME_OUT_OF_BOUND_ERROR);
     }
   }
 
