@@ -1,44 +1,20 @@
 package racingcar.model;
 
-import org.junit.platform.commons.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static racingcar.common.GameConstants.DELIMITER;
+
 public class RacingCarBuilder {
-  private static final int MAX_CAR_NAME_LENGTH = 5;
-  private static final String DELIMITER = ",";
-  private static final String ERROR_PREFIX = "[ERROR]";
-  private static final String BLANK_STRING_ERROR = ERROR_PREFIX + " Car name cannot be empty string.";
-  private static final String OUT_OF_BOUND_ERROR = ERROR_PREFIX + " Max length of car name is " + MAX_CAR_NAME_LENGTH + ".";
-
-  private final String carNames;
-
-  public RacingCarBuilder(String carNames) {
-    this.carNames = carNames;
+  public RacingCarBuilder() { // 모든 클래스는 반드시 하나이상의 생성자를 가져야 함. 개발자가 별도의 생성자를 작성하지 않을 경우 컴파일러가 빈 생성자(파라미터로 아무것도 받지 않는 생성자)를 추가하도록 설정되어 있음.
   }
 
-  public List<RacingCar> createCars() {
+  public List<RacingCar> createCars(String carNames) {
     List<RacingCar> cars = new ArrayList<>();
-
     for (String carName : carNames.split(DELIMITER)) {
       String name = carName.trim();
-      try {
-        checkCarName(name);
-      } catch (RuntimeException e) {
-      }
       cars.add(new RacingCar(name));
     }
-
     return cars;
-  }
-
-  private void checkCarName(String name) {
-    if (StringUtils.isBlank(name)) {
-      throw new RuntimeException(BLANK_STRING_ERROR, new IllegalArgumentException());
-    }
-    if (name.length() > MAX_CAR_NAME_LENGTH) {
-      throw new RuntimeException(OUT_OF_BOUND_ERROR, new IllegalArgumentException());
-    }
   }
 }
