@@ -18,12 +18,12 @@ public class ValidationUtilsTest {
     @DisplayName("입력받은_자동차이름_null값_에러검증")
     void 입력받은_자동차이름_null값_에러검증() {
         assertThatThrownBy(() -> ValidationUtils.validateCarName(""))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(MessageUtil.NULL_INPUT_CAR_NAME);
     }
     @Test
     @DisplayName("입력받은_자동차이름_5자초과_에러검증")
     void 입력받은_자동차이름_5자초과_에러검증() {
         assertThatThrownBy(() -> ValidationUtils.validateCarName("SONGSUJUNG"))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(MessageUtil.INVALID_INPUT_CAR_NAME);
     }
 }
