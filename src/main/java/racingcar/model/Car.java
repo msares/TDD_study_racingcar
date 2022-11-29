@@ -1,13 +1,13 @@
 package racingcar.model;
 
 public class Car {
-    private final String carName;
+    private final String name;
 
     public Car(String carName) {
-        this.carName = carName;
+        this.name = carName;
     }
 
-    public String getCarName() {
-        return carName;
+    public String getName() {
+        return name;
     }
 }

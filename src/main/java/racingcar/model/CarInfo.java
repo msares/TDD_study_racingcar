@@ -1,20 +1,21 @@
 package racingcar.model;
 
 public class CarInfo {
-    private final String name;
-    private final int advance;
+    private final Car car;
+    private final CarMove carMove;
 
-    public CarInfo(String name, int advance) {
-        this.name = name;
-        this.advance = advance;
+    public CarInfo(String name, int moveCnt) {
+        this.car = new Car(name);
+        this.carMove = new CarMove(moveCnt);
     }
 
-    public String getName() {
-        return this.name;
+
+    public String getCar() {
+        return car.getName();
     }
 
-    public Integer getAdvance() {
-        return this.advance;
+    public int getCarMove() {
+        return carMove.getMoveCnt();
     }
 
 

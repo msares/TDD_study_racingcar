@@ -15,4 +15,8 @@ public class CarMove {
         }
         return sb.toString();
     }
+
+    public int getMoveCnt() {
+        return moveCnt;
+    }
 }
