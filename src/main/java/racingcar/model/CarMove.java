@@ -16,6 +16,10 @@ public class CarMove {
         return sb.toString();
     }
 
+    public static boolean isSameMoveCnt(int exportMoveCnt, int carMove) {
+        return exportMoveCnt == carMove;
+    }
+
     public int getMoveCnt() {
         return moveCnt;
     }

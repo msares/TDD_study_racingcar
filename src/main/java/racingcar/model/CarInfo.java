@@ -9,7 +9,6 @@ public class CarInfo {
         this.carMove = new CarMove(moveCnt);
     }
 
-
     public String getCar() {
         return car.getName();
     }
@@ -17,6 +16,4 @@ public class CarInfo {
     public int getCarMove() {
         return carMove.getMoveCnt();
     }
-
-
 }
