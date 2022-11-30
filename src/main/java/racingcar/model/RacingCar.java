@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import static racingcar.common.GameConstants.MOVE_SINGE;
-import static racingcar.model.UserInputVerifier.validateCarName;
 
 public class RacingCar {
   private int movingStage;
@@ -9,7 +8,8 @@ public class RacingCar {
   private String name;
 
   public RacingCar(String name) {
-    validateCarName(name);
+    UserInputVerifier varifier = new UserInputVerifier();
+    varifier.validateCarName(name);
     this.name = name;
     this.position = "";
   }

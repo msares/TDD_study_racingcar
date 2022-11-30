@@ -10,7 +10,11 @@ import static racingcar.common.GameConstants.MAX_CAR_NAME_LENGTH;
 import static racingcar.common.GameConstants.NUMBER_ZERO;
 
 public class UserInputVerifier {
-  public static void validateCarName(String name) {
+  public UserInputVerifier() {
+
+  }
+
+  public  void validateCarName(String name) {
     if (StringUtils.isBlank(name)) {
       throw new IllegalArgumentException(BLANK_STRING_ERROR);
     }
@@ -19,7 +23,7 @@ public class UserInputVerifier {
     }
   }
 
-  public static Integer validateTryCount(String tryCount) {
+  public  Integer validateTryCount(String tryCount) {
     int tryCnt;
 
     if (StringUtils.isBlank(tryCount)) {

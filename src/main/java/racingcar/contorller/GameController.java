@@ -15,17 +15,27 @@ import static racingcar.common.GameConstants.WINNER_PREFIX;
 public class GameController {
   private static List<RacingCar> racingCars;
   private static Integer tryCount;
+  private UserInputVerifier userInputVerifier;
+  private UserInputModule userInputModule ;
+  private RankManager rankManager;
 
-  public static void race() {
+  public GameController() {
+
+  }
+
+  public void race() {
+    userInputVerifier = new UserInputVerifier();
+    userInputModule = new UserInputModule();
     getUserInput();
     for (int i = 0; i < tryCount; i++) {
       runCars();
     }
-    printWinners(new RankManager(racingCars).getWinners());
+    rankManager = new RankManager(racingCars);
+    printWinners(rankManager.getWinners());
   }
 
 
-  private static void getUserInput() {
+  private void getUserInput() {
     racingCars = null;
     while (racingCars == null) {
       racingCars = createCars();
@@ -37,9 +47,9 @@ public class GameController {
     }
   }
 
-  private static List<RacingCar> createCars() {
+  private List<RacingCar> createCars() {
     try {
-      String carNames = UserInputModule.inputCarNames();
+      String carNames = userInputModule.inputCarNames();
       return new RacingCarBuilder().createCars(carNames);
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
@@ -47,17 +57,17 @@ public class GameController {
     return null;
   }
 
-  private static Integer getTryCount() {
-    String userInput = UserInputModule.inputTryCount();
+  private Integer getTryCount() {
+    String userInput = userInputModule.inputTryCount();
     try {
-      return UserInputVerifier.validateTryCount(userInput);
+      return userInputVerifier.validateTryCount(userInput);
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
     }
     return null;
   }
 
-  private static void runCars() {
+  private void runCars() {
     for (RacingCar car : racingCars) {
       car.runCar(MoveManager.getRandomValue());
     }

@@ -16,7 +16,8 @@ public class RankManager {
     cars = racingCars;
   }
 
-  public static List<String> getWinners() {
+  public List<String> getWinners() {
+
     for (RacingCar car : cars) {
       winnerPosition = getWinnerPosition(car.getMovingStage());
     }
@@ -32,11 +33,11 @@ public class RankManager {
     return winners;
   }
 
-  private static int getWinnerPosition(int compareValue) {
+  private int getWinnerPosition(int compareValue) {
     return Math.max(winnerPosition, compareValue);
   }
 
-  private static void addWinners(RacingCar car) {
+  private void addWinners(RacingCar car) {
     if (car.getMovingStage() == winnerPosition) {
       winners.add(car.getName());
     }
