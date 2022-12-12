@@ -1,43 +1,38 @@
 package racingcar.model;
 
 import org.junit.platform.commons.util.StringUtils;
-
-import static racingcar.common.ErrorConstants.BLANK_STRING_ERROR;
-import static racingcar.common.ErrorConstants.CAR_NAME_OUT_OF_BOUND_ERROR;
-import static racingcar.common.ErrorConstants.NUMBER_FORMAT_ERROR;
-import static racingcar.common.ErrorConstants.NUMBER_OUT_OF_RANGE_ERROR;
-import static racingcar.common.GameConstants.MAX_CAR_NAME_LENGTH;
-import static racingcar.common.GameConstants.NUMBER_ZERO;
+import racingcar.common.ErrorConstants;
+import racingcar.common.GameConstants;
 
 public class UserInputVerifier {
   public UserInputVerifier() {
 
   }
 
-  public  void validateCarName(String name) {
+  public void validateCarName(String name) {
     if (StringUtils.isBlank(name)) {
-      throw new IllegalArgumentException(BLANK_STRING_ERROR);
+      throw new IllegalArgumentException(ErrorConstants.BLANK_STRING_ERROR);
     }
-    if (MAX_CAR_NAME_LENGTH < name.length()) {
-      throw new IllegalArgumentException(CAR_NAME_OUT_OF_BOUND_ERROR);
+    if (GameConstants.MAX_CAR_NAME_LENGTH < name.length()) {
+      throw new IllegalArgumentException(ErrorConstants.CAR_NAME_OUT_OF_BOUND_ERROR);
     }
   }
 
-  public  Integer validateTryCount(String tryCount) {
+  public Integer validateTryCount(String tryCount) {
     int tryCnt;
 
     if (StringUtils.isBlank(tryCount)) {
-      throw new IllegalArgumentException(BLANK_STRING_ERROR);
+      throw new IllegalArgumentException(ErrorConstants.BLANK_STRING_ERROR);
     }
 
     try {
       tryCnt = Integer.parseInt(tryCount);
     } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException(NUMBER_FORMAT_ERROR);
+      throw new IllegalArgumentException(ErrorConstants.NUMBER_FORMAT_ERROR);
     }
 
-    if (tryCnt < NUMBER_ZERO) {
-      throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE_ERROR);
+    if (tryCnt < GameConstants.NUMBER_ZERO) {
+      throw new IllegalArgumentException(ErrorConstants.NUMBER_OUT_OF_RANGE_ERROR);
     }
     return tryCnt;
   }

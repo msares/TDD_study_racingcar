@@ -2,6 +2,7 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import racingcar.common.ErrorConstants;
 import racingcar.model.RacingCar;
 import racingcar.model.RacingCarBuilder;
 import racingcar.model.UserInputVerifier;
@@ -10,10 +11,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static racingcar.common.ErrorConstants.BLANK_STRING_ERROR;
-import static racingcar.common.ErrorConstants.CAR_NAME_OUT_OF_BOUND_ERROR;
-import static racingcar.common.ErrorConstants.NUMBER_FORMAT_ERROR;
-import static racingcar.common.ErrorConstants.NUMBER_OUT_OF_RANGE_ERROR;
 import static racingcar.common.TestConstants.USER_DUNA;
 import static racingcar.common.TestConstants.USER_HANA;
 import static racingcar.common.TestConstants.USER_NAMES;
@@ -29,30 +26,39 @@ public class UserInputVerifierTest extends NsTest {
   @Test
   void carName_empty_string_test() {
     assertThatThrownBy(
-      () -> new RacingCarBuilder().createCars(" ,duna")).isInstanceOf(IllegalArgumentException.class).hasMessage(BLANK_STRING_ERROR);
+      () -> new RacingCarBuilder()
+        .createCars(" ,duna"))
+      .isInstanceOf(IllegalArgumentException.class)
+      .hasMessage(ErrorConstants.BLANK_STRING_ERROR);
   }
 
   @Test
   void carName_outOfRange_test() {
     assertThatThrownBy( // hasMessageContaining()
-      () -> new RacingCarBuilder().createCars("hanaIsHappy,duna")).isInstanceOf(IllegalArgumentException.class).hasMessage(CAR_NAME_OUT_OF_BOUND_ERROR);
+      () -> new RacingCarBuilder().createCars("hanaIsHappy,duna"))
+      .isInstanceOf(IllegalArgumentException.class)
+      .hasMessage(ErrorConstants.CAR_NAME_OUT_OF_BOUND_ERROR);
   }
 
   @Test
   void tryCount_test() {
-    assertThat(UserInputVerifier.validateTryCount("5")).isEqualTo(5);
+    assertThat(new UserInputVerifier().validateTryCount("5")).isEqualTo(5);
   }
 
   @Test
   void tryCount_invalid_number_format_test() {
     assertThatThrownBy(
-      () -> UserInputVerifier.validateTryCount("a")).isInstanceOf(IllegalArgumentException.class).hasMessage(NUMBER_FORMAT_ERROR);
+      () -> new UserInputVerifier().validateTryCount("a"))
+      .isInstanceOf(IllegalArgumentException.class)
+      .hasMessage(ErrorConstants.NUMBER_FORMAT_ERROR);
   }
 
   @Test
   void tryCount_number_out_of_range_test() {
     assertThatThrownBy(
-      () -> UserInputVerifier.validateTryCount("-1")).isInstanceOf(IllegalArgumentException.class).hasMessage(NUMBER_OUT_OF_RANGE_ERROR);
+      () -> new UserInputVerifier().validateTryCount("-1"))
+      .isInstanceOf(IllegalArgumentException.class)
+      .hasMessage(ErrorConstants.NUMBER_OUT_OF_RANGE_ERROR);
   }
 
   @Override

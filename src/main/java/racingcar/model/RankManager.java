@@ -1,43 +1,41 @@
 package racingcar.model;
 
+import racingcar.common.GameConstants;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static racingcar.common.GameConstants.NUMBER_ZERO;
 
 public class RankManager {
   private static List<RacingCar> cars;
   private static List<String> winners;
-  private static int winnerPosition;
 
   public RankManager(List<RacingCar> racingCars) {
     winners = new ArrayList<>();
-    winnerPosition = 0;
     cars = racingCars;
   }
 
   public List<String> getWinners() {
-
+    int winnerPosition = 0;
     for (RacingCar car : cars) {
-      winnerPosition = getWinnerPosition(car.getMovingStage());
+      winnerPosition = getWinnerPosition(winnerPosition, car.getMovingStage());
     }
 
-    if (winnerPosition == NUMBER_ZERO) {
+    if (winnerPosition == GameConstants.NUMBER_ZERO) {
       return winners;
     }
 
     for (RacingCar car : cars) {
-      addWinners(car);
+      addWinners(car, winnerPosition);
     }
 
     return winners;
   }
 
-  private int getWinnerPosition(int compareValue) {
-    return Math.max(winnerPosition, compareValue);
+  private int getWinnerPosition(int maxValue, int compareValue) {
+    return Math.max(maxValue, compareValue);
   }
 
-  private void addWinners(RacingCar car) {
+  private void addWinners(RacingCar car, int winnerPosition) {
     if (car.getMovingStage() == winnerPosition) {
       winners.add(car.getName());
     }

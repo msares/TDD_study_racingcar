@@ -1,5 +1,6 @@
 package racingcar.contorller;
 
+import racingcar.common.GameConstants;
 import racingcar.model.MoveManager;
 import racingcar.model.RacingCar;
 import racingcar.model.RacingCarBuilder;
@@ -9,42 +10,34 @@ import racingcar.view.UserInputModule;
 
 import java.util.List;
 
-import static racingcar.common.GameConstants.DELIMITER;
-import static racingcar.common.GameConstants.WINNER_PREFIX;
 
 public class GameController {
-  private static List<RacingCar> racingCars;
-  private static Integer tryCount;
   private UserInputVerifier userInputVerifier;
-  private UserInputModule userInputModule ;
-  private RankManager rankManager;
+  private UserInputModule userInputModule;
 
   public GameController() {
+  }
 
+  public void init() {
+    userInputVerifier = new UserInputVerifier();
+    userInputModule = new UserInputModule();
   }
 
   public void race() {
-    userInputVerifier = new UserInputVerifier();
-    userInputModule = new UserInputModule();
-    getUserInput();
-    for (int i = 0; i < tryCount; i++) {
-      runCars();
+    List<RacingCar> racingCars = createCarList();
+    for (int i = 0; i < getUserInputTryCnt(); i++) {
+      runCars(racingCars);
     }
-    rankManager = new RankManager(racingCars);
+    RankManager rankManager = new RankManager(racingCars);
     printWinners(rankManager.getWinners());
   }
 
-
-  private void getUserInput() {
-    racingCars = null;
+  private List<RacingCar> createCarList() {
+    List<RacingCar> racingCars = null;
     while (racingCars == null) {
       racingCars = createCars();
     }
-
-    tryCount = null;
-    while (tryCount == null) {
-      tryCount = getTryCount();
-    }
+    return racingCars;
   }
 
   private List<RacingCar> createCars() {
@@ -57,6 +50,14 @@ public class GameController {
     return null;
   }
 
+  private Integer getUserInputTryCnt() {
+    Integer tryCount = null;
+    while (tryCount == null) {
+      tryCount = getTryCount();
+    }
+    return tryCount;
+  }
+
   private Integer getTryCount() {
     String userInput = userInputModule.inputTryCount();
     try {
@@ -67,7 +68,7 @@ public class GameController {
     return null;
   }
 
-  private void runCars() {
+  private void runCars(List<RacingCar> racingCars) {
     for (RacingCar car : racingCars) {
       car.runCar(MoveManager.getRandomValue());
     }
@@ -75,9 +76,9 @@ public class GameController {
 
   private static void printWinners(List<String> winners) {
     if (winners.isEmpty()) {
-      System.out.println(WINNER_PREFIX + "없음");
+      System.out.println(GameConstants.WINNER_PREFIX + "없음");
       return;
     }
-    System.out.println(WINNER_PREFIX + String.join(DELIMITER, winners));
+    System.out.println(GameConstants.WINNER_PREFIX + String.join(GameConstants.DELIMITER, winners));
   }
 }

@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import static racingcar.common.GameConstants.MOVE_SINGE;
+import racingcar.common.GameConstants;
 
 public class RacingCar {
   private int movingStage;
@@ -8,8 +8,7 @@ public class RacingCar {
   private String name;
 
   public RacingCar(String name) {
-    UserInputVerifier varifier = new UserInputVerifier();
-    varifier.validateCarName(name);
+    new UserInputVerifier().validateCarName(name);
     this.name = name;
     this.position = "";
   }
@@ -17,7 +16,7 @@ public class RacingCar {
   public void runCar(int randomNum) {
     if (MoveManager.compareValue(randomNum)) {
       movingStage++;
-      position += MOVE_SINGE;
+      position += GameConstants.MOVE_SINGE;
     }
     printCarInfo();
   }
