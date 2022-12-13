@@ -1,33 +1,28 @@
 package racingcar;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 import racingcar.common.ErrorConstants;
 import racingcar.model.RacingCar;
-import racingcar.model.RacingCarBuilder;
 import racingcar.model.UserInputVerifier;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static racingcar.common.TestConstants.USER_DUNA;
 import static racingcar.common.TestConstants.USER_HANA;
-import static racingcar.common.TestConstants.USER_NAMES;
 
-public class UserInputVerifierTest extends NsTest {
+public class UserInputVerifierTest {
   @Test
   public void testCarName_split_car_names() {
-    List<RacingCar> carList = new RacingCarBuilder().createCars(USER_NAMES);
-    assertThat(carList.get(0).getName()).isEqualTo(USER_HANA);
-    assertThat(carList.get(1).getName()).isEqualTo(USER_DUNA);
+    RacingCar hanaCar = new RacingCar(USER_HANA);
+    RacingCar dunaCar = new RacingCar(USER_DUNA);
+    assertThat(hanaCar.getName()).isEqualTo(USER_HANA);
+    assertThat(dunaCar.getName()).isEqualTo(USER_DUNA);
   }
 
   @Test
   void carName_empty_string_test() {
     assertThatThrownBy(
-      () -> new RacingCarBuilder()
-        .createCars(" ,duna"))
+      () -> new RacingCar(" "))
       .isInstanceOf(IllegalArgumentException.class)
       .hasMessage(ErrorConstants.BLANK_STRING_ERROR);
   }
@@ -35,7 +30,7 @@ public class UserInputVerifierTest extends NsTest {
   @Test
   void carName_outOfRange_test() {
     assertThatThrownBy( // hasMessageContaining()
-      () -> new RacingCarBuilder().createCars("hanaIsHappy,duna"))
+      () -> new RacingCar("hanaIsHappy"))
       .isInstanceOf(IllegalArgumentException.class)
       .hasMessage(ErrorConstants.CAR_NAME_OUT_OF_BOUND_ERROR);
   }
@@ -59,10 +54,5 @@ public class UserInputVerifierTest extends NsTest {
       () -> new UserInputVerifier().validateTryCount("-1"))
       .isInstanceOf(IllegalArgumentException.class)
       .hasMessage(ErrorConstants.NUMBER_OUT_OF_RANGE_ERROR);
-  }
-
-  @Override
-  public void runMain() {
-    Application.main(new String[]{});
   }
 }
